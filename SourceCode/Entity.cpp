@@ -21,7 +21,6 @@ void Entity::AddEntity(Entity* entity) {
 }
 
 
-/*
 string& Entity::getName() {
     return name;
 }
@@ -30,6 +29,7 @@ string& Entity::getDescription() {
     return description;
 }
 
+/*
 vector<Entity*>& Entity::getContents() {
     return contains;
 }

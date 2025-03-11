@@ -27,7 +27,6 @@ private:
 	std::list<Entity*> entities;
 
 	std::unordered_map<std::string, std::function<void(World&, const std::vector<std::string>&)>> commandMap;
-	std::unordered_set<std::string> directionsSet;
 
 	void GameLoop();
 	void ParseCommand(const std::vector<std::string>& commands);

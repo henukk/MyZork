@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Room.h"
+#include "Exit.h"
 
 using namespace std;
 
@@ -19,8 +20,10 @@ void Room::Look() {
     cout << description << endl;
 
     for (Entity* e : contains) {
-        if (e->getType() == Type::Exit) {
-            ;
+        Exit* exit = dynamic_cast<Exit*>(e);
+        if (exit) {
+            cout << "You can see " << exit->getDestination()->getName()
+                << " looking at " << exit->getDirectionString() << endl;
         }
     }
 

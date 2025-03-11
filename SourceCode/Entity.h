@@ -25,8 +25,8 @@ public:
     void AddEntity(Entity* entity);
 
 
-    //string& getName();
-    //string& getDescription();
+    std::string& getName();
+    std::string& getDescription();
     //vector<Entity*>& getContents();
 };
 

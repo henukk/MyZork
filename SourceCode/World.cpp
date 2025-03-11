@@ -2,6 +2,7 @@
 
 #include "World.h"
 #include "Room.h"
+#include "Exit.h"
 
 
 using namespace std;
@@ -16,11 +17,20 @@ World::World() {
 		{"look", [this](World& world, const vector<string>& args) { world.Look(args); }}
 	};
 
-	directionsSet = { "north", "south", "west", "east" };
-
-
-	Room* outsideHouse = new Room("Outside house", "You are in fron of your house, you can see your dad on the Kitchen by the window.");
+	Room* outsideHouse = new Room("Outside house", "You are in front of your house, you can see your dad on the Kitchen by the window.");
 	entities.push_back(outsideHouse);
+
+	Room* insideHouse = new Room("Inside the house", "You are inside your house there is a red carpet on the floor centered on the room, above there is the table where usually have meals with your parent.");
+	entities.push_back(insideHouse);
+
+	Room* forest2 = new Room("Forest", "You are in the woods. Having talls trees in all directions.");
+	entities.push_back(forest2);
+
+	Exit* enterHouse = new Exit(Exit::Direction::west, outsideHouse, insideHouse);
+	outsideHouse->AddEntity(enterHouse);
+	
+	Exit* exitHouse = new Exit(Exit::Direction::east, insideHouse, outsideHouse);
+	insideHouse->AddEntity(outsideHouse);
 
 
 	player = new Player("MainPlayer", "", outsideHouse);
@@ -29,7 +39,6 @@ World::World() {
 
 World::~World() {
 	commandMap.clear();
-	directionsSet.clear();
 	//clean memory
 	//save data
 }
