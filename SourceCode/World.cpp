@@ -1,5 +1,8 @@
-#include "World.h"
 #include <iostream>
+
+#include "World.h"
+#include "Room.h"
+
 
 using namespace std;
 
@@ -15,6 +18,13 @@ World::World() {
 
 	directionsSet = { "north", "south", "west", "east" };
 
+
+	Room* outsideHouse = new Room("Outside house", "You are in fron of your house, you can see your dad on the Kitchen by the window.");
+	entities.push_back(outsideHouse);
+
+
+	player = new Player("MainPlayer", "", outsideHouse);
+	entities.push_back(player);
 }
 
 World::~World() {
@@ -79,7 +89,7 @@ void World::Tick(const vector<string> & commands) {
 		if (commands.size() != 1) {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		} else {
-			cout << "Look..." << endl;
+			player->Look();
 		}
 	}
 

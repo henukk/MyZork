@@ -1,43 +1,42 @@
-#ifndef __World__
-#define __World__
+#ifndef __WORLD__
+#define __WORLD__
 
 #include <vector>
 #include <string>
 #include <list>
-#include <time.h>
+#include <chrono>
 #include <unordered_map>
 #include <unordered_set>
 #include <functional>
 
-using namespace std;
+#include "Player.h"
+#include "Entity.h"
 
 #define TICK_FREQUENCY 0.5f
-
-//class Entity;
-//class Player;
 
 class World {
 public:
 	World();
 	~World();
 
-	void Tick(const vector<string>& commands);
+	void Tick(const std::vector<std::string>& commands);
 
 private:
-	clock_t tick_timer;
-	//list<Entity*> entities;
-	//Player* player;
+	std::clock_t tick_timer;
+	Player* player;
+	std::list<Entity*> entities;
 
-	unordered_map<string, function<void(World&, const vector<string>&)>> commandMap;
-	unordered_set<string> directionsSet;
+	std::unordered_map<std::string, std::function<void(World&, const std::vector<std::string>&)>> commandMap;
+	std::unordered_set<std::string> directionsSet;
 
 	void GameLoop();
-	void ParseCommand(const vector<string>& commands);
+	void ParseCommand(const std::vector<std::string>& commands);
 
-	//Commands
-	void Help(const vector<string>& commands);
-	void Move(const vector<string>& commands);
-	void Look(const vector<string>& commands);
+	// Commands
+	void Help(const std::vector<std::string>& commands);
+	void Move(const std::vector<std::string>& commands);
+	void Look(const std::vector<std::string>& commands);
 };
 
-#endif //__World__
+#endif //__WORLD__
+
