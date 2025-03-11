@@ -7,11 +7,13 @@
 
 class Player : public Creature {
 public:
-    Player(const std::string& name, const std::string& description, Room* location);
+    Player(const std::string& name, const std::string& description);
     ~Player();
 
     void Tick() override;
     void Look();
+
+    std::vector<Exit*> getExits();
 };
 
 #endif

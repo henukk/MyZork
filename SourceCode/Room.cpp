@@ -31,3 +31,17 @@ void Room::Look() {
 
     // Creatures
 }
+
+
+vector<Exit*> Room::getExits() {
+    vector<Exit*> result = vector<Exit*>();
+
+    for (Entity* e : contains) {
+        Exit* exit = dynamic_cast<Exit*>(e);
+        if (exit) {
+            result.push_back(exit);
+        }
+    }
+
+    return result;
+}

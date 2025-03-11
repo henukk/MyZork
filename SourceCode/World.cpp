@@ -28,12 +28,16 @@ World::World() {
 
 	Exit* enterHouse = new Exit(Exit::Direction::west, outsideHouse, insideHouse);
 	outsideHouse->AddEntity(enterHouse);
+	entities.push_back(enterHouse);
 	
 	Exit* exitHouse = new Exit(Exit::Direction::east, insideHouse, outsideHouse);
-	insideHouse->AddEntity(outsideHouse);
+	insideHouse->AddEntity(exitHouse);
+	entities.push_back(exitHouse);
 
 
-	player = new Player("MainPlayer", "", outsideHouse);
+	player = new Player("MainPlayer", "");
+	player->setLocation(outsideHouse);
+
 	entities.push_back(player);
 }
 
@@ -90,7 +94,19 @@ void World::Tick(const vector<string> & commands) {
 		if (commands.size() != 2) {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		} else {
-			cout << "Move..." << endl;
+			vector<Exit*> exits = player->getExits();
+			int n = exits.size(), i = 0;
+			while (i < n and exits[i]->getDirectionString() != commands[1]) {
+				++i;
+			}
+
+			if (i < n) {
+				player->setLocation(exits[i]->getDestination());
+				player->Look();
+			} else {
+				cout << "Go in that direction seems to be impossible." << endl;
+			}
+
 		}
 	}
 

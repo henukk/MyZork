@@ -2,6 +2,7 @@
 #define ROOM_H
 
 #include "Entity.h"
+#include "Exit.h"
 
 class Room : public Entity {
 public:
@@ -11,6 +12,8 @@ public:
     void Tick() override;
 
     void Look();
+
+    std::vector<Exit*> getExits();
 };
 
 #endif

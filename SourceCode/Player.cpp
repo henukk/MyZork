@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(const string& name, const string& description, Room* location) : Creature(name, description, location) {}
+Player::Player(const string& name, const string& description) : Creature(name, description) {}
 
 Player::~Player() {}
 
@@ -14,4 +14,8 @@ void Player::Tick() {
 
 void Player::Look() {
 	location->Look();
+}
+
+vector<Exit*> Player::getExits() {
+	return this->location->getExits();
 }

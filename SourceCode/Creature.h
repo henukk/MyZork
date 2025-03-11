@@ -9,10 +9,12 @@ protected:
     Room* location;
 
 public:
-    Creature(const std::string& name, const std::string& description, Room* location);
+    Creature(const std::string& name, const std::string& description);
     ~Creature();
 
     void Tick() override;
+
+    void setLocation(Room* location);
 };
 
 #endif
