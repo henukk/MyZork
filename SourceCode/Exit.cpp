@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Exit::Exit(const std::string& description, Direction direction, Room* destination) : Entity(Type::Exit, "", description) {
+Exit::Exit(const std::string& name, const std::string& description, Direction direction, Room* destination) : Entity(Type::Exit, name, description) {
     this->direction = direction;
     this->destination = destination;
 

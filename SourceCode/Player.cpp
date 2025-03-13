@@ -151,6 +151,35 @@ void Player::Inventory() {
 }
 
 
-void Player::Use(const std::string& item, const std::string& on) {
-	cout << "not implemented" << endl;
+void Player::Use(const std::string& name, const std::string& on) {
+	Entity* itemEntity = getEntityByName(name);
+
+	if (itemEntity == nullptr) {
+		cout << "I can't find " << name << '.' << endl;
+	}
+	else {
+		Item* item = dynamic_cast<Item*>(itemEntity);
+
+		list<Exit*> exits = location->getExits();
+		auto it = exits.begin();
+
+		while (it != exits.end() and (*it)->getName() != on) {
+			++it;
+		}
+
+		if (it != exits.end()) {
+			if ((*it)->isOpen()) {
+				cout << "The path to " << on << " was already open." << endl;
+			}
+			else if ((*it)->open(item)) {
+				cout << "You use " << name << " to clear the way to " << (*it)->getDestination()->getName() << '.' << endl;
+			}
+			else {
+				cout << "Seems that " << name << " will not be efective clearing this way." << endl;
+			}
+		}
+		else {
+			cout << on << " not found. " << endl;
+		}
+	}
 }

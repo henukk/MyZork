@@ -16,7 +16,7 @@ private:
     Item* closed;
 
 public:
-    Exit(const std::string& description, Direction direction, Room* destination);
+    Exit(const std::string& name, const std::string& description, Direction direction, Room* destination);
     ~Exit();
 
     Direction getDirection();

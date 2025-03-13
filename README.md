@@ -18,9 +18,9 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 ### 🔥 Extra Features (Planned)
 
-- [ ] Key that allows to cross a path
-- [ ] A visual map (looking like the original *Zork*)
+- [x] Key that allows to cross a path
 - [ ] NPC dialog interactions
+- [ ] A visual map (looking like the original *Zork*)
 - [ ] An exit puzzle
 - [ ] Enemy encounters
 - [ ] Weapon statistics and combat mechanics
