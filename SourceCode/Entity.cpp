@@ -54,6 +54,20 @@ Entity* Entity::removeEntityByName(const std::string& name) {
     return nullptr;
 }
 
+Entity* Entity::getEntityByName(const string& name) {
+    auto it = contains.begin();
+
+    while (it != contains.end() && (*it)->getName() != name) {
+        ++it;
+    }
+
+    if (it != contains.end()) {
+        return *it;
+    }
+
+    return nullptr;
+}
+
 
 string& Entity::getName() {
     return name;

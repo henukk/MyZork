@@ -13,7 +13,9 @@ public:
     void Tick() override;
     void Look();
     void Take(const std::string& item);
+    void TakeFrom(const std::string& item, const std::string& from);
     void Drop(const std::string& item);
+    void DropTo(const std::string& item, const std::string& to);
     void Inventory();
 
     std::list<Exit*> getExits();

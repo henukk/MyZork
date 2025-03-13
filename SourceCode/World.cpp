@@ -17,7 +17,9 @@ World::World() {
 		{"go", [this](World& world, const vector<string>& args) { world.Move(args); }},
 		{"look", [this](World& world, const vector<string>& args) { world.Look(args); }},
 		{"take", [this](World& world, const vector<string>& args) { world.Take(args); }},
+		{"get", [this](World& world, const vector<string>& args) { world.Take(args); }},
 		{"drop", [this](World& world, const vector<string>& args) { world.Drop(args); }},
+		{"put", [this](World& world, const vector<string>& args) { world.Drop(args); }},
 		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }}
 	};
 
@@ -139,7 +141,7 @@ World::World() {
 	house->addEntity(showcase);
 	entities.push_back(showcase);
 
-	Item* barnKey = new Item("Key", "The barn key", 1, 0, true);
+	Item* barnKey = new Item("key", "The barn key", 1, 0, true);
 	showcase->addEntity(barnKey);
 	entities.push_back(barnKey);
 
@@ -249,20 +251,25 @@ void World::Tick(const vector<string> & commands) {
 	}
 
 	void World::Take(const vector<string>& commands) {
-		if (commands.size() != 2) {
-			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		if (commands.size() == 2) {
+			player->Take(commands[1]);
+		}
+		else if(commands.size() == 4 && commands[2] == "from") {
+			player->TakeFrom(commands[1], commands[3]);
 		}
 		else {
-			player->Take(commands[1]);
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		}
 	}
 
 	void World::Drop(const vector<string>& commands) {
-		if (commands.size() != 2) {
-			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
-		}
-		else {
+		if (commands.size() == 2) {
 			player->Drop(commands[1]);
+		}
+		else if (commands.size() == 4 && (commands[2] == "to" || commands[2] == "in" || commands[2] == "into")) {
+			player->DropTo(commands[1], commands[3]);
+		} else {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		}
 	}
 

@@ -19,8 +19,8 @@ public:
     void Look(const std::string& pretext);
     void InventoryLook(const std::string& pretext);
 
-    bool getSizeContent();
-    bool getSize();
+    short getSizeContent();
+    short getSize();
     bool getTakeable();
     void setSometimeTaked();
 };

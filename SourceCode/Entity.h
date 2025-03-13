@@ -25,6 +25,7 @@ public:
     void addEntity(Entity* entity);
     Entity* removeEntity(Entity* entity);
     Entity* removeEntityByName(const std::string& name);
+    Entity* getEntityByName(const std::string& name);
 
 
     std::string& getName();

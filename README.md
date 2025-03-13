@@ -14,11 +14,11 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - [x] Five connected rooms
 - [x] Interactive items that can be picked up and dropped
 - [x] Ability to drop items
-- [ ] Items can be placed inside other items
+- [x] Items can be placed inside other items
 
 ### 🔥 Extra Features (Planned)
 
-- [ ] Key that allow some path
+- [ ] Key that allows to go across a path
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] NPC dialog interactions
 - [ ] An exit puzzle

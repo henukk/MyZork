@@ -28,7 +28,7 @@ void Item::Look(const string& pretext) {
 	if (sizeContent > 0) {
 		for (Entity* e : contains) {
 			Item* item = dynamic_cast<Item*>(e);
-			item->Look(pretext + "\t- ");
+			item->InventoryLook(pretext + "\t- ");
 		}
 	}
 }
@@ -44,16 +44,16 @@ void Item::InventoryLook(const string& pretext) {
 	if (sizeContent > 0) {
 		for (Entity* e : contains) {
 			Item* item = dynamic_cast<Item*>(e);
-			item->Look(pretext + "\t- ");
+			item->Look(string(pretext.size()/2, '\t') + "\t - ");
 		}
 	}
 }
 
-bool Item::getSizeContent() {
+short Item::getSizeContent() {
 	return sizeContent;
 }
 
-bool Item::getSize() {
+short Item::getSize() {
 	return size;
 }
 
