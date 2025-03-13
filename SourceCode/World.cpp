@@ -230,11 +230,24 @@ void World::Tick(const vector<string> & commands) {
 
 	void World::Help(const vector<string>& commands) {
 		if (commands.size() != 1) {
-			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
-		} else {
-			cout << "Help is not yet implemented." << endl;
+			cout << "Sorry, I have only understood '" << commands[0] << "'." << endl;
+		}
+		else {
+			cout << "Available commands:" << endl
+				<< "- `HELP` – Displays the list of available commands." << endl
+				<< "- `GO [NORTH | SOUTH | EAST | WEST]` – Moves in the specified direction if possible." << endl
+				<< "- `LOOK` – Describes the surroundings and objects in the current location." << endl
+				<< "- `TAKE [item]` – Pick up an item if possible and add to the inventory." << endl
+				<< "- `DROP [item]` – Drop an item in the current location." << endl
+				<< "- `INVENTORY` - List all items that the player has in the inventory." << endl
+				<< "- `USE [item] ON [path]` - Use something to allow going across a path." << endl
+				<< "- `TALK [creature]` - Short dialogue with some creature." << endl
+				<< "- `TAKE [item] FROM [item]` - Pick up an item that is inside of another item if possible and add to the inventory." << endl
+				<< "- `DROP [item] TO [item]` - Drop an item inside of another item if it is possible." << endl
+				<< "- `RUN` - Escape from danger, but sometimes the way is blocked." << endl;
 		}
 	}
+
 
 	void World::Move(const vector<string>& commands) {
 		if (commands.size() != 2) {

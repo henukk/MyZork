@@ -43,11 +43,11 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - `INVENTORY` - List all items that player have in the inventory.
 - `USE [item] ON [path]` - Use something to allow going across a path.
 - `TALK [creature]` - Short dialogue with some creature.
+- `TAKE [item] FROM [item]` - Pick up an item that is inside of another item if possible and add to the inventory.
+- `DROP [item] TO [item]` - Drop an item inside of another item if it is possible.
 
 ## 🚧 Features in Development
 
-- `TAKE [item] FROM [item]` - Pick up an item that is inside of another item if possible and add to the inventory.
-- `DROP [item] TO [item]` - Drop an item inside of another item if it is possible.
 - `ATTACK [creature] WITH [item]` – Attack an enemy using an item.
 
 ## 🔎 Special Notes
