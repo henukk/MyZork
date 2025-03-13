@@ -20,11 +20,11 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 - [x] Key that allows to cross a path
 - [x] NPC dialog interactions
+- [x] Creatures that walk arround
+- [x] NPC situational and changing dialogues
+- [ ] Enemy encounters
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] An exit puzzle
-- [ ] Enemy encounters
-- [ ] Weapon statistics and combat mechanics
-- [ ] Score point system
 
 ## 🎮 How to Play
 

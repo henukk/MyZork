@@ -12,7 +12,7 @@ Dad::~Dad() {
 }
 
 void Dad::Tick() {
-    if (waitCounter == 1) description = "You see your dad nervous walking on your house.";
+    if (waitCounter == 1) description = "You see your dad anxiously pacing back and forth, his hands clenched into fists. His eyes dart around the room, and he mutters under his breath, clearly troubled by something.";
 	if (waitCounter > 0) waitCounter--;
 
 }

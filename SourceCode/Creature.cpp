@@ -19,7 +19,11 @@ void Creature::setLocation(Room* location) {
 	this->location = location;
 }
 
-bool Creature::isAlive()const {
+Room* Creature::getLocation() const {
+	return location;
+}
+
+bool Creature::isAlive() const {
 	return life > 0;
 }
 

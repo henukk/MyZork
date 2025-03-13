@@ -17,6 +17,7 @@ public:
     virtual void Tick();
 
     void setLocation(Room* location);
+    Room* getLocation() const;
     bool isAlive() const;
     void takeDamage(int damage);
 };

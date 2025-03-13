@@ -169,16 +169,21 @@ World::World() {
 #pragma endregion
 
 #pragma region NPCs
-	Dad* dad = new Dad("dad", "You see your dad pacing around the house, his expression thoughtful as he glances outside every so often.");
-	house->addEntity(dad);
-	entities.push_back(dad);
-
-#pragma endregion
-
-
 	player = new Player("MainPlayer", "");
 	player->setLocation(infrontOfHouse);
 
+	Dad* dad = new Dad("dad", "You see your dad pacing around the house, his expression thoughtful as he glances outside every so often.");
+	house->addEntity(dad);
+	dad->setLocation(house);
+	entities.push_back(dad);
+
+	orc = new Orc("orc", "The orc stands tall and battle-scarred, its powerful frame exuding strength. Its sharp tusks and resting hand on its weapon hint at danger, yet its gaze is calm, watching with wary curiosity rather than hostility.", player);
+	forest1->addEntity(orc);
+	orc->setLocation(forest1);
+	entities.push_back(orc);
+
+
+#pragma endregion
 
 	entities.push_back(player);
 }
@@ -235,26 +240,30 @@ void World::Tick(const vector<string> & commands) {
 		if (commands.size() != 2) {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		} else {
-			list<Exit*> exits = player->getExits();
-			auto it = exits.begin();
-
-			while (it != exits.end() && (*it)->getDirectionString() != commands[1]) {
-				++it;
-			}
-
-			if (it != exits.end()) {
-				if ((*it)->isOpen()) {
-					player->setLocation((*it)->getDestination());
-					player->Look();
-				}
-				else {
-					cout << "Seems that the path is blocked." << endl;
-				}
+			if (false and orc->getLocation() == player->getLocation()) {
+				cout << "You instinctively prepare to run, but the orc blocks your path with an imposing stance. Its sheer presence alone makes escape feel impossible, as if any sudden movement could provoke an immediate reaction. You are trapped in its looming shadow, forced to face whatever comes next." << endl;
 			}
 			else {
-				cout << "Going in that direction seems to be impossible." << endl;
-			}
+				list<Exit*> exits = player->getExits();
+				auto it = exits.begin();
 
+				while (it != exits.end() && (*it)->getDirectionString() != commands[1]) {
+					++it;
+				}
+
+				if (it != exits.end()) {
+					if ((*it)->isOpen()) {
+						player->setLocation((*it)->getDestination());
+						player->Look();
+					}
+					else {
+						cout << "Seems that the path is blocked." << endl;
+					}
+				}
+				else {
+					cout << "Going in that direction seems to be impossible." << endl;
+				}
+			}
 		}
 	}
 

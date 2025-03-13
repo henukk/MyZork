@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "Entity.h"
+#include "Orc.h"
 
 #define TICK_FREQUENCY 0.5f
 
@@ -24,6 +25,7 @@ public:
 private:
 	std::clock_t tick_timer;
 	Player* player;
+	Orc* orc;
 	std::list<Entity*> entities;
 
 	std::unordered_map<std::string, std::function<void(World&, const std::vector<std::string>&)>> commandMap;
