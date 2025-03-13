@@ -1,0 +1,119 @@
+MY ZORK
+
+WELCOME to MY ZORK
+Release 3 / By henuk
+----------------
+
+Infront of the house
+The ground is well-trodden, marked by years of toil and practice. An old stump, its surface scarred by countless blade strikes, stands as a silent witness to your training. Nearby, logs lie in neat stacks, their fresh scent mixing with the crisp forest air. The woods loom beyond, whispering secrets in the wind.
+
+A well-trodden dirt path leads west to the wooden steps of your home.
+A narrow trail, littered with stray wood chips and hay, leads north to the big gate of the leaning barn
+The trees thicken ahead, their towering trunks marking the forest's edge. The path east vanishes into the woods.
+
+There is a rusty old axe stuck in a stump.
+
+> go west
+The House in the Woods
+A modest wooden house, its walls worn by time and weather. The scent of old wood and lingering smoke from the hearth fills the air. A sturdy table sits near the fireplace, and a creaking chair rests beside it. Shadows dance along the walls, flickering with the dim candlelight.
+
+The door opens to the familiar yard, where the ground is worn from years of work and training. The path east leads back outside.
+
+An old wood showcase is setted next to the fireplace.
+        - The barn key
+        - A clove of garlic
+An old leather bag resting on the table.
+
+You see your dad pacing around the house, his expression thoughtful as he glances outside every so often.
+
+> take key from showcase
+key taked.
+
+> go east
+Infront of the house
+The ground is well-trodden, marked by years of toil and practice. An old stump, its surface scarred by countless blade strikes, stands as a silent witness to your training. Nearby, logs lie in neat stacks, their fresh scent mixing with the crisp forest air. The woods loom beyond, whispering secrets in the wind.
+
+A well-trodden dirt path leads west to the wooden steps of your home.
+A narrow trail, littered with stray wood chips and hay, leads north to the big gate of the leaning barn
+The trees thicken ahead, their towering trunks marking the forest's edge. The path east vanishes into the woods.
+
+There is a rusty old axe stuck in a stump.
+
+> use key on gate
+You use key to clear the way to Barn.
+
+> go north
+Barn
+The barn leans slightly to one side, its aged planks groaning in protest against the weight of years. A rusty lantern sways from a beam, casting trembling light upon scattered tools, bales of hay, and forgotten remnants of past labors. The scent of damp straw and aged leather lingers.
+
+The open yard and your home lie south, just beyond the well-worn path.
+
+Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.
+
+> take sword
+sword taked.
+
+> go south
+Infront of the house
+The ground is well-trodden, marked by years of toil and practice. An old stump, its surface scarred by countless blade strikes, stands as a silent witness to your training. Nearby, logs lie in neat stacks, their fresh scent mixing with the crisp forest air. The woods loom beyond, whispering secrets in the wind.
+
+A well-trodden dirt path leads west to the wooden steps of your home.
+A narrow trail, littered with stray wood chips and hay, leads north to the big gate of the leaning barn
+The trees thicken ahead, their towering trunks marking the forest's edge. The path east vanishes into the woods.
+
+There is a rusty old axe stuck in a stump.
+
+> go east
+Forest 1
+The trees stand tall and twisted, their roots gripping the earth like ancient fingers. The air is thick with the scent of moss and damp leaves. In the distance, birds call out, their songs blending with the gentle rustling of the wind through the branches.
+
+Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.
+
+> Forest 1
+The trees stand tall and twisted, their roots gripping the earth like ancient fingers. The air is thick with the scent of moss and damp leaves. In the distance, birds call out, their songs blending with the gentle rustling of the wind through the branches.
+
+Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.
+
+The orc stands tall and battle-scarred, its powerful frame exuding strength. Its sharp tusks and resting hand on its weapon hint at danger, yet its gaze is calm, watching with wary curiosity rather than hostility.
+> attack orc with sword
+You successfully attacked orc using sword
+
+> attack orc with sword
+You successfully attacked orc using sword
+Orc dies
+
+> go north
+Forest 2
+The path narrows, winding between trunks draped in ivy. Sunlight filters through the dense canopy, casting golden patches on the mossy ground. A distant rustling in the underbrush hints at unseen creatures moving just beyond sight.
+
+Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.
+
+> go north
+Forest 3
+The trees here are massive, their towering branches weaving together to form a tangled ceiling. The air is cool, thick with the scent of wood and resin. Strange carvings mark a few trunks, their meanings lost to time.
+
+Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.
+
+> go north
+Forest 1
+The trees stand tall and twisted, their roots gripping the earth like ancient fingers. The air is thick with the scent of moss and damp leaves. In the distance, birds call out, their songs blending with the gentle rustling of the wind through the branches.
+
+Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.
+
+The orc's massive body lies still, its weapon slack in its grip. Scars of past battles remain, but its once-watchful eyes are now dull and empty, staring into nothingness.
+
+> go east
+West of the bridge
+The path leads to the edge of a wide river, its waters rushing swiftly below. The sound of flowing water fills the air, mingling with the rustling leaves. Across the river, the faint outline of buildings can be seen in the distance, but the way forward remains uncertain.
+
+The river fades behind as the dense forest closes in. The path west vanishes beneath towering trees and tangled undergrowth.
+The land narrows toward the river, where the bridge stands as the only way forward. The path east leads toward it.
+
+> go east
+THE END
+You rush into the village, breathless but determined. Finding the guard, you relay the urgent newsùorc footprints were seen near your home. His expression hardens as he quickly rallies the others. The village bursts into action, barricades are reinforced, and weapons are readied. Thanks to your warning, the town stands prepared for whatÆs to come.
+
+
+You've completed the game. I hope you enjoyed it!
+
+Henuk

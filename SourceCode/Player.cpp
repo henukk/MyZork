@@ -223,8 +223,8 @@ void Player::Attack(const string& objective, const string& weapon) {
 				if (it2 != contains.end()) {
 					Item* item = dynamic_cast<Item*>(*it2);
 					if (item && item->getDamage() > 0) {
-						npc->takeDamage(rand() % item->getDamage() + 1);
 						cout << "You successfully attacked " << objective << " using " << weapon << endl;
+						npc->takeDamage(rand() % item->getDamage() + 1);
 					}
 					else {
 						cout << "I think you cannot attack with " << weapon << endl;

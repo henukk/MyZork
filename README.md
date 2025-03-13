@@ -23,6 +23,7 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - [x] Creatures that walk arround
 - [x] NPC situational and changing dialogues
 - [x] Enemy encounters
+- [x] Rpg stats on items
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] An exit puzzle
 
@@ -45,10 +46,10 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - `TALK [creature]` - Short dialogue with some creature.
 - `TAKE [item] FROM [item]` - Pick up an item that is inside of another item if possible and add to the inventory.
 - `DROP [item] TO [item]` - Drop an item inside of another item if it is possible.
+- `ATTACK [creature] WITH [item]` – Attack an enemy using an item.
 
 ## 🚧 Features in Development
-
-- `ATTACK [creature] WITH [item]` – Attack an enemy using an item.
+Currently nothing
 
 ## 🔎 Special Notes
 
