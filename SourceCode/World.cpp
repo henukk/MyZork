@@ -3,6 +3,7 @@
 #include "World.h"
 #include "Room.h"
 #include "Exit.h"
+#include "Item.h"
 
 
 using namespace std;
@@ -46,91 +47,124 @@ World::World() {
 #pragma region Exits
 	//House
 	Exit* exitHouse = new Exit("The door opens to the familiar yard, where the ground is worn from years of work and training. The path east leads back outside.", Exit::Direction::east, infrontOfHouse);
-	house->AddEntity(exitHouse);
+	house->addEntity(exitHouse);
 	entities.push_back(exitHouse);
 
 	//Infront
 	Exit* enterHouse = new Exit("A well-trodden dirt path leads west to the wooden steps of your home.", Exit::Direction::west, house);
-	infrontOfHouse->AddEntity(enterHouse);
+	infrontOfHouse->addEntity(enterHouse);
 	entities.push_back(enterHouse);
 
 	Exit* enterBarn = new Exit("A narrow trail, littered with stray wood chips and hay, leads north to the leaning barn", Exit::Direction::north, barn);
-	infrontOfHouse->AddEntity(enterBarn);
+	infrontOfHouse->addEntity(enterBarn);
 	entities.push_back(enterBarn);
 
 	Exit* houseToForest1 = new Exit("The trees thicken ahead, their towering trunks marking the forest's edge. The path east vanishes into the woods.", Exit::Direction::east, forest1);
-	infrontOfHouse->AddEntity(houseToForest1);
+	infrontOfHouse->addEntity(houseToForest1);
 	entities.push_back(houseToForest1);
 
 	//Barn
 	Exit* exitBarn = new Exit("The open yard and your home lie south, just beyond the well-worn path.", Exit::Direction::south, infrontOfHouse);
-	barn->AddEntity(exitBarn);
+	barn->addEntity(exitBarn);
 	entities.push_back(exitBarn);
 
 	//Forest 1
 	Exit* toInfront = new Exit("", Exit::Direction::west, infrontOfHouse);
-	forest1->AddEntity(toInfront);
+	forest1->addEntity(toInfront);
 	entities.push_back(toInfront);
 
 	Exit* toWestOfBridge = new Exit("", Exit::Direction::east, westOfTheBridge);
-	forest1->AddEntity(toWestOfBridge);
+	forest1->addEntity(toWestOfBridge);
 	entities.push_back(toWestOfBridge);
 
 	Exit* forest1Toforest2 = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest2);
-	forest1->AddEntity(forest1Toforest2);
+	forest1->addEntity(forest1Toforest2);
 	entities.push_back(forest1Toforest2);
 
 	Exit* forest1Toforest3 = new Exit("", Exit::Direction::south, forest3);
-	forest1->AddEntity(forest1Toforest3);
+	forest1->addEntity(forest1Toforest3);
 	entities.push_back(forest1Toforest3);
 
 	//Forest 2
 	Exit* forest2N = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest3);
-	forest2->AddEntity(forest2N);
+	forest2->addEntity(forest2N);
 	entities.push_back(forest2N);
 
 	Exit* forest2S = new Exit("", Exit::Direction::south, forest1);
-	forest2->AddEntity(forest2S);
+	forest2->addEntity(forest2S);
 	entities.push_back(forest2S);
 
 	Exit* forest2E = new Exit("", Exit::Direction::west, forest2);
-	forest2->AddEntity(forest2E);
+	forest2->addEntity(forest2E);
 	entities.push_back(forest2E);
 
 	Exit* forest2W = new Exit("", Exit::Direction::east, forest2);
-	forest2->AddEntity(forest2W);
+	forest2->addEntity(forest2W);
 	entities.push_back(forest2W);
 
 	//Forest 3
 	Exit* forest3N = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest1);
-	forest3->AddEntity(forest3N);
+	forest3->addEntity(forest3N);
 	entities.push_back(forest3N);
 
 	Exit* forest3S = new Exit("", Exit::Direction::south, forest2);
-	forest3->AddEntity(forest3S);
+	forest3->addEntity(forest3S);
 	entities.push_back(forest3S);
 
 	Exit* forest3E = new Exit("", Exit::Direction::west, forest3);
-	forest3->AddEntity(forest3E);
+	forest3->addEntity(forest3E);
 	entities.push_back(forest3E);
 
 	Exit* forest3W = new Exit("", Exit::Direction::east, forest3);
-	forest3->AddEntity(forest3W);
+	forest3->addEntity(forest3W);
 	entities.push_back(forest3W);
 
 	//West of bridge
 	Exit* bridgeToForest1 = new Exit("The river fades behind as the dense forest closes in. The path west vanishes beneath towering trees and tangled undergrowth.", Exit::Direction::west, forest1);
-	westOfTheBridge->AddEntity(bridgeToForest1);
+	westOfTheBridge->addEntity(bridgeToForest1);
 	entities.push_back(bridgeToForest1);
 
 	Exit* bridgeToCredits = new Exit("The land narrows toward the river, where the bridge stands as the only way forward. The path east leads toward it.", Exit::Direction::east, credits);
-	westOfTheBridge->AddEntity(bridgeToCredits);
+	westOfTheBridge->addEntity(bridgeToCredits);
 	entities.push_back(bridgeToCredits);
+
+#pragma endregion
+
+#pragma region Items
+	//house
+	Item* showCase = new Item("show case", 10, 2);
+	house->addEntity(showCase);
+	entities.push_back(showCase);
+
+	Item* bag = new Item("old bag", 10, 2);
+	house->addEntity(bag);
+	entities.push_back(bag);
+
+	Item* barnKey = new Item("barn key", 1, 0);
+	house->addEntity(barnKey);
+	entities.push_back(barnKey);
+
+	Item* cloveGarlic = new Item("clove of garlic", 1, 0);
+	house->addEntity(cloveGarlic);
+	entities.push_back(cloveGarlic);
+
+	//house
+	Item* axe = new Item("old rusty axe", 10, 0);
+	infrontOfHouse->addEntity(axe);
+	entities.push_back(axe);
+
+	//barn
+	Item* ironSword = new Item("an iron sword", 10, 0);
+	barn->addEntity(ironSword);
+	entities.push_back(ironSword);
+
+
 
 #pragma endregion
 
 	player = new Player("MainPlayer", "");
 	player->setLocation(infrontOfHouse);
+
 
 	entities.push_back(player);
 }
@@ -188,17 +222,19 @@ void World::Tick(const vector<string> & commands) {
 		if (commands.size() != 2) {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		} else {
-			vector<Exit*> exits = player->getExits();
-			int n = exits.size(), i = 0;
-			while (i < n and exits[i]->getDirectionString() != commands[1]) {
-				++i;
+			list<Exit*> exits = player->getExits();
+			auto it = exits.begin();
+
+			while (it != exits.end() && (*it)->getDirectionString() != commands[1]) {
+				++it;
 			}
 
-			if (i < n) {
-				player->setLocation(exits[i]->getDestination());
+			if (it != exits.end()) {
+				player->setLocation((*it)->getDestination());
 				player->Look();
-			} else {
-				cout << "Go in that direction seems to be impossible." << endl;
+			}
+			else {
+				cout << "Going in that direction seems to be impossible." << endl;
 			}
 
 		}

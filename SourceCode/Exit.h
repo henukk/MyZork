@@ -19,7 +19,6 @@ public:
     ~Exit();
 
     Direction getDirection();
-    Room* getSource();
     Room* getDestination();
     std::string getDirectionString() const;
 

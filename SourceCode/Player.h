@@ -13,7 +13,7 @@ public:
     void Tick() override;
     void Look();
 
-    std::vector<Exit*> getExits();
+    std::list<Exit*> getExits();
 };
 
 #endif

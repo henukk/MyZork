@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <string>
-#include <vector>
+#include <list>
 
 
 class Entity {
@@ -13,7 +13,7 @@ protected:
     Type type;
     std::string name;
     std::string description;
-    std::vector<Entity*> contains;
+    std::list<Entity*> contains;
 
 public:
     Entity(Type type, const std::string& name, const std::string& description);
@@ -22,7 +22,8 @@ public:
     virtual void Tick() = 0;
 
     Type getType();
-    void AddEntity(Entity* entity);
+    void addEntity(Entity* entity);
+    Entity* removeEntity(Entity* entity);
 
 
     std::string& getName();

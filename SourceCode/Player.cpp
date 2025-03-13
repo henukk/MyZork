@@ -16,6 +16,6 @@ void Player::Look() {
 	location->Look();
 }
 
-vector<Exit*> Player::getExits() {
+list<Exit*> Player::getExits() {
 	return this->location->getExits();
 }

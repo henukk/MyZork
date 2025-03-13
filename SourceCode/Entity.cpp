@@ -6,7 +6,7 @@ Entity::Entity(Type type, const string& name, const string& description) {
     this->type = type;
     this->name = name;
     this->description = description;
-    this->contains = vector<Entity*>();
+    this->contains = list<Entity*>();
 }
 
 Entity::~Entity() {}
@@ -16,9 +16,27 @@ Entity::Type Entity::getType() {
 }
 
 
-void Entity::AddEntity(Entity* entity) {
+void Entity::addEntity(Entity* entity) {
     contains.push_back(entity);
 }
+
+
+Entity* Entity::removeEntity(Entity* entity) {
+    auto it = contains.begin();
+
+    while (it != contains.end() && (*it)->getName() != entity->getName()) {
+        ++it;
+    }
+
+    if (it != contains.end()) {
+        Entity* removedEntity = *it; 
+        contains.erase(it);
+        return removedEntity;
+    }
+
+    return nullptr;
+}
+
 
 
 string& Entity::getName() {
