@@ -150,3 +150,7 @@ void Player::Inventory() {
 	}
 }
 
+
+void Player::Use(const std::string& item, const std::string& on) {
+	cout << "not implemented" << endl;
+}

@@ -5,6 +5,8 @@ using namespace std;
 Exit::Exit(const std::string& description, Direction direction, Room* destination) : Entity(Type::Exit, "", description) {
     this->direction = direction;
     this->destination = destination;
+
+    this->closed = nullptr;
 }
 
 Exit::~Exit() {}
@@ -25,6 +27,22 @@ string Exit::getDirectionString() const {
         case Direction::west: return "west";
     }
     return "unknown";
+}
+
+void Exit::setClosed(Item* key) {
+    closed = key;
+}
+
+bool Exit::open(Item* key) {
+    if (closed == key) {
+        closed = nullptr;
+        return true;
+    }
+    return false;
+}
+
+bool Exit::isOpen() {
+    return closed == nullptr;
 }
 
 void Exit::Tick() {

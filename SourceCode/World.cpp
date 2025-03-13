@@ -20,7 +20,8 @@ World::World() {
 		{"get", [this](World& world, const vector<string>& args) { world.Take(args); }},
 		{"drop", [this](World& world, const vector<string>& args) { world.Drop(args); }},
 		{"put", [this](World& world, const vector<string>& args) { world.Drop(args); }},
-		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }}
+		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }},
+		{"use", [this](World& world, const vector<string>& args) { world.Use(args); }}
 	};
 
 #pragma region Rooms
@@ -49,6 +50,35 @@ World::World() {
 	entities.push_back(credits);
 #pragma endregion
 
+#pragma region Items
+	//house
+	Item* showcase = new Item("showcase", "An old wood showcase is setted next to the fireplace.", 10, 2, false);
+	house->addEntity(showcase);
+	entities.push_back(showcase);
+
+	Item* barnKey = new Item("key", "The barn key", 1, 0, true);
+	showcase->addEntity(barnKey);
+	entities.push_back(barnKey);
+
+	Item* cloveGarlic = new Item("garlic", "A clove of garlic", 1, 0, true);
+	showcase->addEntity(cloveGarlic);
+	entities.push_back(cloveGarlic);
+
+	Item* bag = new Item("bag", "An old leather bag resting on the table. ", 10, 2, true);
+	house->addEntity(bag);
+	entities.push_back(bag);
+
+	//house
+	Item* axe = new Item("axe", "There is a rusty old axe stuck in a stump.", 10, 0, true);
+	infrontOfHouse->addEntity(axe);
+	entities.push_back(axe);
+
+	//barn
+	Item* ironSword = new Item("sword", "Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.", 10, 0, true);
+	barn->addEntity(ironSword);
+	entities.push_back(ironSword);
+#pragma endregion
+
 #pragma region Exits
 	//House
 	Exit* exitHouse = new Exit("The door opens to the familiar yard, where the ground is worn from years of work and training. The path east leads back outside.", Exit::Direction::east, infrontOfHouse);
@@ -61,6 +91,7 @@ World::World() {
 	entities.push_back(enterHouse);
 
 	Exit* enterBarn = new Exit("A narrow trail, littered with stray wood chips and hay, leads north to the leaning barn", Exit::Direction::north, barn);
+	enterBarn->setClosed(barnKey);
 	infrontOfHouse->addEntity(enterBarn);
 	entities.push_back(enterBarn);
 
@@ -135,36 +166,6 @@ World::World() {
 
 #pragma endregion
 
-#pragma region Items
-	//house
-	Item* showcase = new Item("showcase", "An old wood showcase is setted next to the fireplace.", 10, 2, false);
-	house->addEntity(showcase);
-	entities.push_back(showcase);
-
-	Item* barnKey = new Item("key", "The barn key", 1, 0, true);
-	showcase->addEntity(barnKey);
-	entities.push_back(barnKey);
-
-	Item* cloveGarlic = new Item("garlic", "A clove of garlic", 1, 0, true);
-	showcase->addEntity(cloveGarlic);
-	entities.push_back(cloveGarlic);
-
-	Item* bag = new Item("bag", "An old leather bag resting on the table. ", 10, 2, true);
-	house->addEntity(bag);
-	entities.push_back(bag);
-
-	//house
-	Item* axe = new Item("axe", "There is a rusty old axe stuck in a stump.", 10, 0, true);
-	infrontOfHouse->addEntity(axe);
-	entities.push_back(axe);
-
-	//barn
-	Item* ironSword = new Item("sword", "Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.", 10, 0, true);
-	barn->addEntity(ironSword);
-	entities.push_back(ironSword);
-
-#pragma endregion
-
 	player = new Player("MainPlayer", "");
 	player->setLocation(infrontOfHouse);
 
@@ -232,8 +233,13 @@ void World::Tick(const vector<string> & commands) {
 			}
 
 			if (it != exits.end()) {
-				player->setLocation((*it)->getDestination());
-				player->Look();
+				if ((*it)->isOpen()) {
+					player->setLocation((*it)->getDestination());
+					player->Look();
+				}
+				else {
+					cout << "Seems that the path is blocked." << endl;
+				}
 			}
 			else {
 				cout << "Going in that direction seems to be impossible." << endl;
@@ -279,6 +285,15 @@ void World::Tick(const vector<string> & commands) {
 		}
 		else {
 			player->Inventory();
+		}
+	}
+
+	void World::Use(const vector<string>& commands) {
+		if (commands.size() == 4 && (commands[2] == "on")) {
+			player->Use(commands[1], commands[3]);
+		}
+		else {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		}
 	}
 #pragma endregion
