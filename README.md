@@ -20,10 +20,10 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 - [ ] Key that allow some path
 - [ ] A visual map (looking like the original *Zork*)
-- [ ] Enemy encounters
-- [ ] An exit puzzle
-- [ ] Weapon statistics and combat mechanics
 - [ ] NPC dialog interactions
+- [ ] An exit puzzle
+- [ ] Enemy encounters
+- [ ] Weapon statistics and combat mechanics
 - [ ] Score point system
 
 ## 🎮 How to Play
