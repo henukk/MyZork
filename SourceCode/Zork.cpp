@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define RELEASE 2
+#define RELEASE 3
 
 void PrepareCommands(string& playerInput, vector<string>& commands) {
     int a = 0, size = playerInput.size();
@@ -62,7 +62,7 @@ int main() {
         }
 
 
-        if (commands.size() > 0 and (commands[0] == "quit" or commands[0] == "exit")) break;
+        if (commands.size() > 0 and (commands[0] == "quit" or commands[0] == "exit") or world->End()) break;
 
         world->Tick(commands);
 
@@ -73,8 +73,9 @@ int main() {
         }
     }
 
+    if (!world->End()) cout << endl << "Thank you for playing, I hope you enjoy it." << endl;
+    
     delete world;
 
-    cout << endl << "Thank you for playing, I hope you enjoy it." << endl;
     Sleep(1500);
 }

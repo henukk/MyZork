@@ -19,6 +19,8 @@ public:
     void Inventory();
     void Use(const std::string& name, const std::string& on);
     void Talk(const std::string& name);
+    void Attack(const std::string& objective, const std::string& weapon);
+
 
     std::list<Exit*> getExits();
 };

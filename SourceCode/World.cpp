@@ -23,7 +23,8 @@ World::World() {
 		{"put", [this](World& world, const vector<string>& args) { world.Drop(args); }},
 		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }},
 		{"use", [this](World& world, const vector<string>& args) { world.Use(args); }},
-		{"talk", [this](World& world, const vector<string>& args) { world.Talk(args); }}
+		{"talk", [this](World& world, const vector<string>& args) { world.Talk(args); }},
+		{"attack", [this](World& world, const vector<string>& args) { world.Attack(args); }}
 	};
 
 #pragma region Rooms
@@ -48,35 +49,38 @@ World::World() {
 	Room* westOfTheBridge = new Room("West of the bridge", "The path leads to the edge of a wide river, its waters rushing swiftly below. The sound of flowing water fills the air, mingling with the rustling leaves. Across the river, the faint outline of buildings can be seen in the distance, but the way forward remains uncertain.");
 	entities.push_back(westOfTheBridge);
 
-	Room* credits = new Room("THE END", "You've completed the game, i hope you enjoy it!\n\nhenuk");
-	entities.push_back(credits);
+	winRoom = new Room("THE END", "You rush into the village, breathless but determined. Finding the guard, you relay the urgent news—orc footprints were seen near your home. His expression hardens as he quickly rallies the others. The village bursts into action, barricades are reinforced, and weapons are readied. Thanks to your warning, the town stands prepared for what’s to come.\n\n\nYou've completed the game. I hope you enjoyed it!\n\nHenuk");
+	entities.push_back(winRoom);
+
+	loseRoom = new Room("YOU DIE", "You fight bravely, but the orc's sheer strength overwhelms you. Each strike drains your energy until, with a final crushing blow, you collapse to the ground. Darkness creeps into your vision as the sounds of battle fade. Your journey ends here. \n\n\nYou haven't completed the game. Maybe you can try playing again. I hope you enjoyed it!\n\nHenuk");
+	entities.push_back(loseRoom);
 #pragma endregion
 
 #pragma region Items
 	//house
-	Item* showcase = new Item("showcase", "An old wood showcase is setted next to the fireplace.", 10, 2, false);
+	Item* showcase = new Item("showcase", "An old wood showcase is setted next to the fireplace.", 10, 2, false, -1);
 	house->addEntity(showcase);
 	entities.push_back(showcase);
 
-	Item* barnKey = new Item("key", "The barn key", 1, 0, true);
+	Item* barnKey = new Item("key", "The barn key", 1, 0, true, -1);
 	showcase->addEntity(barnKey);
 	entities.push_back(barnKey);
 
-	Item* cloveGarlic = new Item("garlic", "A clove of garlic", 1, 0, true);
+	Item* cloveGarlic = new Item("garlic", "A clove of garlic", 1, 0, true, -1);
 	showcase->addEntity(cloveGarlic);
 	entities.push_back(cloveGarlic);
 
-	Item* bag = new Item("bag", "An old leather bag resting on the table. ", 10, 2, true);
+	Item* bag = new Item("bag", "An old leather bag resting on the table. ", 10, 2, true, -1);
 	house->addEntity(bag);
 	entities.push_back(bag);
 
 	//house
-	Item* axe = new Item("axe", "There is a rusty old axe stuck in a stump.", 10, 0, true);
+	Item* axe = new Item("axe", "There is a rusty old axe stuck in a stump.", 10, 0, true, 10);
 	infrontOfHouse->addEntity(axe);
 	entities.push_back(axe);
 
 	//barn
-	Item* ironSword = new Item("sword", "Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.", 10, 0, true);
+	Item* ironSword = new Item("sword", "Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.", 10, 0, true, 20);
 	barn->addEntity(ironSword);
 	entities.push_back(ironSword);
 #pragma endregion
@@ -162,7 +166,7 @@ World::World() {
 	westOfTheBridge->addEntity(bridgeToForest1);
 	entities.push_back(bridgeToForest1);
 
-	Exit* bridgeToCredits = new Exit("", "The land narrows toward the river, where the bridge stands as the only way forward. The path east leads toward it.", Exit::Direction::east, credits);
+	Exit* bridgeToCredits = new Exit("", "The land narrows toward the river, where the bridge stands as the only way forward. The path east leads toward it.", Exit::Direction::east, winRoom);
 	westOfTheBridge->addEntity(bridgeToCredits);
 	entities.push_back(bridgeToCredits);
 
@@ -223,6 +227,14 @@ void World::Tick(const vector<string> & commands) {
 	}
 
 	GameLoop();
+	if (!player->isAlive()) {
+		player->setLocation(loseRoom);
+		loseRoom->Look();
+	}
+}
+
+bool World::End() {
+	return (player->getLocation() == winRoom || player->getLocation() == loseRoom);
 }
 
 
@@ -332,6 +344,15 @@ void World::Tick(const vector<string> & commands) {
 	void World::Talk(const vector<string>& commands) {
 		if (commands.size() == 2) {
 			player->Talk(commands[1]);
+		}
+		else {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		}
+	}
+
+	void World::Attack(const vector<string>& commands) {
+		if (commands.size() == 4) {
+			player->Attack(commands[1], commands[3]);
 		}
 		else {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;

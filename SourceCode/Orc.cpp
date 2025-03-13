@@ -41,18 +41,23 @@ void Orc::Move() {
 }
 
 void Orc::Attack() {
+    if (p->isAlive()) {
+        cout << endl << endl << "Orc attack fiercely." << endl << endl << "> ";
+        int damage = rand() % 15;
+        p->takeDamage(damage);
+    }
+
     waitCounter = TICKS_TO_ATTACK;
 }
 
 void Orc::Tick() {
-    if(waitCounter-- == 0) {
+    if (isAlive() and waitCounter-- == 0) {
         if (p->getLocation() == location) {
             Attack();
         }
         else {
             Move();
         }
-
     }
 }
 void Orc::Talk() {
@@ -71,6 +76,16 @@ void Orc::Talk() {
     default:
         std::cout << "The orc grunts something unintelligible." << std::endl;
         break;
+    }
+}
+
+
+void Orc::takeDamage(int damage) {
+    life -= damage;
+    if (!isAlive()) {
+        description = "The orc's massive body lies still, its weapon slack in its grip. Scars of past battles remain, but its once-watchful eyes are now dull and empty, staring into nothingness.";
+
+        cout << "Orc dies" << endl;
     }
 }
 

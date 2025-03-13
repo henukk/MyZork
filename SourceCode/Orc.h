@@ -20,6 +20,7 @@ public:
 
     void Tick() override;
     virtual void Talk();
+    virtual void takeDamage(int damage);
 };
 
 #endif

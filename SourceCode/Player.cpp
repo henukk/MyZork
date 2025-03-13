@@ -196,3 +196,50 @@ void Player::Talk(const string& name) {
 		(*it)->Talk();
 	}
 }
+
+void Player::Attack(const string& objective, const string& weapon) {
+	if (objective == "dad") {
+		cout << "Based on old experiences you are completly secure that is not a good idea." << endl;
+	} else {
+		list<NPC*> npcs = location->getNpcs();
+		auto it = npcs.begin();
+
+		while (it != npcs.end() and (*it)->getName() != objective) {
+			cout << (*it)->getName() << endl;
+			++it;
+		}
+
+		if (it != npcs.end()) {
+			NPC* npc = dynamic_cast<NPC*>(*it);
+
+			if (npc->isAlive()) {
+
+				auto it2 = contains.begin();
+
+				while (it2 != contains.end() && (*it2)->getName() != weapon) {
+					++it2;
+				}
+
+				if (it2 != contains.end()) {
+					Item* item = dynamic_cast<Item*>(*it2);
+					if (item && item->getDamage() > 0) {
+						npc->takeDamage(rand() % item->getDamage() + 1);
+						cout << "You successfully attacked " << objective << " using " << weapon << endl;
+					}
+					else {
+						cout << "I think you cannot attack with " << weapon << endl;
+					}
+				}
+				else {
+					cout << "I didn't find " << weapon << endl;
+				}
+			}
+			else {
+				cout << objective << " already rest in peace." << endl;
+			}
+		}
+		else {
+			cout << "I think you cannot attack to " << objective << endl;
+		}
+	}
+}

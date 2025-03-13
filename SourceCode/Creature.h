@@ -19,7 +19,7 @@ public:
     void setLocation(Room* location);
     Room* getLocation() const;
     bool isAlive() const;
-    void takeDamage(int damage);
+    virtual void takeDamage(int damage);
 };
 
 #endif

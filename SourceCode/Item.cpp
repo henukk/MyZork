@@ -3,10 +3,11 @@
 
 using namespace std;
 
-Item::Item(const std::string& name, const string& description, const short size, const short sizeContent, const bool takeable) : Entity(Type::Item, name, description) {
+Item::Item(const std::string& name, const string& description, const short size, const short sizeContent, const bool takeable, int damage) : Entity(Type::Item, name, description) {
 	this->size = size;
 	this->sizeContent = sizeContent;
 	this->takeable = takeable;
+	this->damage = damage;
 
 	sometimeTaked = false;
 }
@@ -49,11 +50,11 @@ void Item::InventoryLook(const string& pretext) {
 	}
 }
 
-short Item::getSizeContent() {
+short Item::getSizeContent() const{
 	return sizeContent;
 }
 
-short Item::getSize() {
+short Item::getSize() const{
 	return size;
 }
 
@@ -61,6 +62,10 @@ void Item::setSometimeTaked() {
 	sometimeTaked = true;
 }
 
-bool Item::getTakeable() {
+bool Item::getTakeable() const{
 	return takeable;
+}
+
+int Item::getDamage() const{
+	return damage;
 }

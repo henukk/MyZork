@@ -22,7 +22,7 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - [x] NPC dialog interactions
 - [x] Creatures that walk arround
 - [x] NPC situational and changing dialogues
-- [ ] Enemy encounters
+- [x] Enemy encounters
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] An exit puzzle
 
