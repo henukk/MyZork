@@ -19,7 +19,7 @@ In **My Zork**, you play as a character living in the woods with your father. On
 ### 🔥 Extra Features (Planned)
 
 - [x] Key that allows to cross a path
-- [ ] NPC dialog interactions
+- [x] NPC dialog interactions
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] An exit puzzle
 - [ ] Enemy encounters
@@ -41,6 +41,8 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - `TAKE [item]` – Pick up an item if possible and add to the inventory.
 - `DROP [item]` – Drop an item in the current location.
 - `INVENTORY` - List all items that player have in the inventory.
+- `USE [item] ON [path]` - Use something to allow going across a path.
+- `TALK [creature]` - Short dialogue with some creature.
 
 ## 🚧 Features in Development
 

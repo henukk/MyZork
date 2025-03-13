@@ -2,19 +2,23 @@
 #define CREATURE_H
 
 #include "Entity.h"
-#include "Room.h"
+#include <string>
+
+class Room;
 
 class Creature : public Entity {
 protected:
     Room* location;
-
+    int life;
 public:
-    Creature(const std::string& name, const std::string& description);
-    ~Creature();
+    Creature(const std::string& name, const std::string& description, int life);
+    virtual ~Creature();
 
-    void Tick() override;
+    virtual void Tick();
 
     void setLocation(Room* location);
+    bool isAlive() const;
+    void takeDamage(int damage);
 };
 
 #endif

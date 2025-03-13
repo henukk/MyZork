@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Player::Player(const string& name, const string& description) : Creature(name, description) {}
+Player::Player(const string& name, const string& description) : Creature(name, description, 30) {}
 
 Player::~Player() {}
 
@@ -181,5 +181,18 @@ void Player::Use(const std::string& name, const std::string& on) {
 		else {
 			cout << on << " not found. " << endl;
 		}
+	}
+}
+
+void Player::Talk(const string& name) {
+	list<NPC*> npcs = location->getNpcs();
+	auto it = npcs.begin();
+
+	while (it != npcs.end() and (*it)->getName() != name) {
+		++it;
+	}
+
+	if (it != npcs.end()) {
+		(*it)->Talk();
 	}
 }

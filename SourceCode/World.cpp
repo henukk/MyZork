@@ -4,6 +4,7 @@
 #include "Room.h"
 #include "Exit.h"
 #include "Item.h"
+#include "Dad.h"
 
 
 using namespace std;
@@ -21,7 +22,8 @@ World::World() {
 		{"drop", [this](World& world, const vector<string>& args) { world.Drop(args); }},
 		{"put", [this](World& world, const vector<string>& args) { world.Drop(args); }},
 		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }},
-		{"use", [this](World& world, const vector<string>& args) { world.Use(args); }}
+		{"use", [this](World& world, const vector<string>& args) { world.Use(args); }},
+		{"talk", [this](World& world, const vector<string>& args) { world.Talk(args); }}
 	};
 
 #pragma region Rooms
@@ -166,6 +168,14 @@ World::World() {
 
 #pragma endregion
 
+#pragma region NPCs
+	Dad* dad = new Dad("dad", "You see your dad pacing around the house, his expression thoughtful as he glances outside every so often.");
+	house->addEntity(dad);
+	entities.push_back(dad);
+
+#pragma endregion
+
+
 	player = new Player("MainPlayer", "");
 	player->setLocation(infrontOfHouse);
 
@@ -291,6 +301,15 @@ void World::Tick(const vector<string> & commands) {
 	void World::Use(const vector<string>& commands) {
 		if (commands.size() == 4 && (commands[2] == "on")) {
 			player->Use(commands[1], commands[3]);
+		}
+		else {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		}
+	}
+
+	void World::Talk(const vector<string>& commands) {
+		if (commands.size() == 2) {
+			player->Talk(commands[1]);
 		}
 		else {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;

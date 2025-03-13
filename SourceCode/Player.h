@@ -18,6 +18,7 @@ public:
     void DropTo(const std::string& item, const std::string& to);
     void Inventory();
     void Use(const std::string& name, const std::string& on);
+    void Talk(const std::string& name);
 
     std::list<Exit*> getExits();
 };

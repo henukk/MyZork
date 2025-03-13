@@ -3,6 +3,7 @@
 #include "Room.h"
 #include "Exit.h"
 #include "Item.h"
+#include "NPC.h"
 
 using namespace std;
 
@@ -46,6 +47,17 @@ void Room::Look() {
     spaced = false;
 
     // Creatures
+
+    for (Entity* e : contains) {
+        NPC* npc = dynamic_cast<NPC*>(e);
+        if (npc) {
+            if (!spaced) cout << endl;
+            spaced = true;
+            cout << npc->getDescription() << endl;
+        }
+    }
+    spaced = false;
+
 }
 
 
@@ -56,6 +68,19 @@ list<Exit*> Room::getExits() {
         Exit* exit = dynamic_cast<Exit*>(e);
         if (exit) {
             result.push_back(exit);
+        }
+    }
+
+    return result;
+}
+
+list<NPC*> Room::getNpcs() {
+    list<NPC*> result = list<NPC*>();
+
+    for (Entity* e : contains) {
+        NPC* npc = dynamic_cast<NPC*>(e);
+        if (npc) {
+            result.push_back(npc);
         }
     }
 

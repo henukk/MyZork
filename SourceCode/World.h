@@ -39,6 +39,7 @@ private:
 	void Drop(const std::vector<std::string>& commands);
 	void Inventory(const std::vector<std::string>& commands);
 	void Use(const std::vector<std::string>& commands);
+	void Talk(const std::vector<std::string>& commands);
 };
 
 #endif //__WORLD__

@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Exit.h"
+#include "NPC.h"
 
 class Room : public Entity {
 public:
@@ -14,6 +15,7 @@ public:
     void Look();
 
     std::list<Exit*> getExits();
+    std::list<NPC*> getNpcs();
 };
 
 #endif
