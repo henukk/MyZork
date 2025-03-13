@@ -35,6 +35,9 @@ private:
 	void Help(const std::vector<std::string>& commands);
 	void Move(const std::vector<std::string>& commands);
 	void Look(const std::vector<std::string>& commands);
+	void Take(const std::vector<std::string>& commands);
+	void Drop(const std::vector<std::string>& commands);
+	void Inventory(const std::vector<std::string>& commands);
 };
 
 #endif //__WORLD__

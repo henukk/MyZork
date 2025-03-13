@@ -38,6 +38,22 @@ Entity* Entity::removeEntity(Entity* entity) {
 }
 
 
+Entity* Entity::removeEntityByName(const std::string& name) {
+    auto it = contains.begin();
+
+    while (it != contains.end() && (*it)->getName() != name) {
+        ++it;
+    }
+
+    if (it != contains.end()) {
+        Entity* removedEntity = *it;
+        contains.erase(it);
+        return removedEntity;
+    }
+
+    return nullptr;
+}
+
 
 string& Entity::getName() {
     return name;

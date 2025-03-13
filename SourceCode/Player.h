@@ -12,6 +12,9 @@ public:
 
     void Tick() override;
     void Look();
+    void Take(const std::string& item);
+    void Drop(const std::string& item);
+    void Inventory();
 
     std::list<Exit*> getExits();
 };

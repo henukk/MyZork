@@ -15,7 +15,10 @@ World::World() {
 		{"help", [this](World& world, const vector<string>& args) { world.Help(args); }},
 		{"move", [this](World& world, const vector<string>& args) { world.Move(args); }},
 		{"go", [this](World& world, const vector<string>& args) { world.Move(args); }},
-		{"look", [this](World& world, const vector<string>& args) { world.Look(args); }}
+		{"look", [this](World& world, const vector<string>& args) { world.Look(args); }},
+		{"take", [this](World& world, const vector<string>& args) { world.Take(args); }},
+		{"drop", [this](World& world, const vector<string>& args) { world.Drop(args); }},
+		{"inventory", [this](World& world, const vector<string>& args) { world.Inventory(args); }}
 	};
 
 #pragma region Rooms
@@ -132,33 +135,31 @@ World::World() {
 
 #pragma region Items
 	//house
-	Item* showCase = new Item("show case", 10, 2);
-	house->addEntity(showCase);
-	entities.push_back(showCase);
+	Item* showcase = new Item("showcase", "An old wood showcase is setted next to the fireplace.", 10, 2, false);
+	house->addEntity(showcase);
+	entities.push_back(showcase);
 
-	Item* bag = new Item("old bag", 10, 2);
+	Item* barnKey = new Item("Key", "The barn key", 1, 0, true);
+	showcase->addEntity(barnKey);
+	entities.push_back(barnKey);
+
+	Item* cloveGarlic = new Item("garlic", "A clove of garlic", 1, 0, true);
+	showcase->addEntity(cloveGarlic);
+	entities.push_back(cloveGarlic);
+
+	Item* bag = new Item("bag", "An old leather bag resting on the table. ", 10, 2, true);
 	house->addEntity(bag);
 	entities.push_back(bag);
 
-	Item* barnKey = new Item("barn key", 1, 0);
-	house->addEntity(barnKey);
-	entities.push_back(barnKey);
-
-	Item* cloveGarlic = new Item("clove of garlic", 1, 0);
-	house->addEntity(cloveGarlic);
-	entities.push_back(cloveGarlic);
-
 	//house
-	Item* axe = new Item("old rusty axe", 10, 0);
+	Item* axe = new Item("axe", "There is a rusty old axe stuck in a stump.", 10, 0, true);
 	infrontOfHouse->addEntity(axe);
 	entities.push_back(axe);
 
 	//barn
-	Item* ironSword = new Item("an iron sword", 10, 0);
+	Item* ironSword = new Item("sword", "Your old iron sword that you usually use in your training is hanging on the wall right where you left it this morning.", 10, 0, true);
 	barn->addEntity(ironSword);
 	entities.push_back(ironSword);
-
-
 
 #pragma endregion
 
@@ -179,10 +180,9 @@ void World::GameLoop() {
 	clock_t now = clock();
 
 	if ((now - tick_timer) / CLOCKS_PER_SEC > TICK_FREQUENCY) {
-		/*
-		for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
-			(*it)->Tick();		
-		*/
+		for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->Tick();
+		}
 
 		tick_timer = now;
 	}
@@ -214,7 +214,7 @@ void World::Tick(const vector<string> & commands) {
 		if (commands.size() != 1) {
 			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
 		} else {
-			cout << "Help..." << endl;
+			cout << "Help is not yet implemented." << endl;
 		}
 	}
 
@@ -248,4 +248,30 @@ void World::Tick(const vector<string> & commands) {
 		}
 	}
 
+	void World::Take(const vector<string>& commands) {
+		if (commands.size() != 2) {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		}
+		else {
+			player->Take(commands[1]);
+		}
+	}
+
+	void World::Drop(const vector<string>& commands) {
+		if (commands.size() != 2) {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		}
+		else {
+			player->Drop(commands[1]);
+		}
+	}
+
+	void World::Inventory(const vector<string>& commands) {
+		if (commands.size() != 1) {
+			cout << "Sorry I have only understood '" << commands[0] << "'." << endl;
+		}
+		else {
+			player->Inventory();
+		}
+	}
 #pragma endregion

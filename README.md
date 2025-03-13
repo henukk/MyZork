@@ -12,8 +12,8 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 - [x] Three connected rooms
 - [x] Five connected rooms
-- [ ] Interactive items that can be picked up and dropped
-- [ ] Ability to drop items
+- [x] Interactive items that can be picked up and dropped
+- [x] Ability to drop items
 - [ ] Items can be placed inside other items
 
 ### 🔥 Extra Features (Planned)
@@ -37,11 +37,14 @@ In **My Zork**, you play as a character living in the woods with your father. On
 - `HELP` – Displays the list of available commands.
 - `GO [NORTH | SOUTH | EAST | WEST]` – Moves in the specified direction if possible.
 - `LOOK` – Describes the surroundings and objects in the current location.
+- `TAKE [item]` – Pick up an item if possible and add to the inventory.
+- `DROP [item]` – Drop an item in the current location.
+- `INVENTORY` - List all items that player have in the inventory.
 
 ## 🚧 Features in Development
 
-- `TAKE [item]` – Pick up an item if possible.
-- `DROP [item]` – Drop an item in the current location.
+- `TAKE [item] FROM [item]` - Pick up an item that is inside of another item if possible and add to the inventory.
+- `DROP [item] TO [item]` - Drop an item inside of another item if it is possible.
 - `ATTACK [creature] WITH [item]` – Attack an enemy using an item.
 
 ## 🔎 Special Notes

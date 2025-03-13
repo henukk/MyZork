@@ -40,8 +40,7 @@ void Room::Look() {
         if (item) {
             if (!spaced) cout << endl;
             spaced = true;
-            string desc = item->getName();
-            if (desc != "") cout << desc << endl;
+            item->Look("");
         }
     }
     spaced = false;

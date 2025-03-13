@@ -24,11 +24,11 @@ public:
     Type getType();
     void addEntity(Entity* entity);
     Entity* removeEntity(Entity* entity);
+    Entity* removeEntityByName(const std::string& name);
 
 
     std::string& getName();
     std::string& getDescription();
-    //vector<Entity*>& getContents();
 };
 
 #endif
