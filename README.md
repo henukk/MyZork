@@ -18,6 +18,7 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 ### 🔥 Extra Features (Planned)
 
+- [ ] Key that allow some path
 - [ ] A visual map (looking like the original *Zork*)
 - [ ] Enemy encounters
 - [ ] An exit puzzle
