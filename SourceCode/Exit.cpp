@@ -2,9 +2,8 @@
 
 using namespace std;
 
-Exit::Exit(Direction direction, Room* source, Room* destination) : Entity(Type::Exit, "","") {
+Exit::Exit(const std::string& description, Direction direction, Room* destination) : Entity(Type::Exit, "", description) {
     this->direction = direction;
-    this->source = source;
     this->destination = destination;
 }
 
@@ -12,10 +11,6 @@ Exit::~Exit() {}
 
 Exit::Direction Exit::getDirection() {
     return direction;
-}
-
-Room* Exit::getSource() {
-    return source;
 }
 
 Room* Exit::getDestination() {

@@ -22,8 +22,8 @@ void Room::Look() {
     for (Entity* e : contains) {
         Exit* exit = dynamic_cast<Exit*>(e);
         if (exit) {
-            cout << "You can see " << exit->getDestination()->getName()
-                << " looking at " << exit->getDirectionString() << endl;
+            string desc = exit->getDescription();
+            if (desc != "") cout << desc << endl;
         }
     }
 

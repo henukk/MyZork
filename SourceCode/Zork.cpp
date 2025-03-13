@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define RELEASE 1
+#define RELEASE 2
 
 void PrepareCommands(string& playerInput, vector<string>& commands) {
     int a = 0, size = playerInput.size();

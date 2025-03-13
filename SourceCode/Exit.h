@@ -12,11 +12,10 @@ public:
 
 private:
     Direction direction;
-    Room* source;
     Room* destination;
 
 public:
-    Exit(Direction direction, Room* source, Room* destination);
+    Exit(const std::string& description, Direction direction, Room* destination);
     ~Exit();
 
     Direction getDirection();

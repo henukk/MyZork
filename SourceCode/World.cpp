@@ -17,26 +17,120 @@ World::World() {
 		{"look", [this](World& world, const vector<string>& args) { world.Look(args); }}
 	};
 
-	Room* outsideHouse = new Room("Outside house", "You are in front of your house, you can see your dad on the Kitchen by the window.");
-	entities.push_back(outsideHouse);
+#pragma region Rooms
+	Room* house = new Room("The House in the Woods", "A modest wooden house, its walls worn by time and weather. The scent of old wood and lingering smoke from the hearth fills the air. A sturdy table sits near the fireplace, and a creaking chair rests beside it. Shadows dance along the walls, flickering with the dim candlelight.");
+	entities.push_back(house);
 
-	Room* insideHouse = new Room("Inside the house", "You are inside your house there is a red carpet on the floor centered on the room, above there is the table where usually have meals with your parent.");
-	entities.push_back(insideHouse);
+	Room* infrontOfHouse = new Room("Infront of the house", "The ground is well-trodden, marked by years of toil and practice. An old stump, its surface scarred by countless blade strikes, stands as a silent witness to your training. Nearby, logs lie in neat stacks, their fresh scent mixing with the crisp forest air. The woods loom beyond, whispering secrets in the wind.");
+	entities.push_back(infrontOfHouse);
 
-	Room* forest2 = new Room("Forest", "You are in the woods. Having talls trees in all directions.");
+	Room* barn = new Room("Barn", "The barn leans slightly to one side, its aged planks groaning in protest against the weight of years. A rusty lantern sways from a beam, casting trembling light upon scattered tools, bales of hay, and forgotten remnants of past labors. The scent of damp straw and aged leather lingers.");
+	entities.push_back(barn);
+
+	Room* forest1 = new Room("Forest 1", "The trees stand tall and twisted, their roots gripping the earth like ancient fingers. The air is thick with the scent of moss and damp leaves. In the distance, birds call out, their songs blending with the gentle rustling of the wind through the branches.");
+	entities.push_back(forest1);
+
+	Room* forest2 = new Room("Forest 2", "The path narrows, winding between trunks draped in ivy. Sunlight filters through the dense canopy, casting golden patches on the mossy ground. A distant rustling in the underbrush hints at unseen creatures moving just beyond sight.");
 	entities.push_back(forest2);
 
-	Exit* enterHouse = new Exit(Exit::Direction::west, outsideHouse, insideHouse);
-	outsideHouse->AddEntity(enterHouse);
-	entities.push_back(enterHouse);
-	
-	Exit* exitHouse = new Exit(Exit::Direction::east, insideHouse, outsideHouse);
-	insideHouse->AddEntity(exitHouse);
+	Room* forest3 = new Room("Forest 3", "The trees here are massive, their towering branches weaving together to form a tangled ceiling. The air is cool, thick with the scent of wood and resin. Strange carvings mark a few trunks, their meanings lost to time.");
+	entities.push_back(forest3);
+
+	Room* westOfTheBridge = new Room("West of the bridge", "The path leads to the edge of a wide river, its waters rushing swiftly below. The sound of flowing water fills the air, mingling with the rustling leaves. Across the river, the faint outline of buildings can be seen in the distance, but the way forward remains uncertain.");
+	entities.push_back(westOfTheBridge);
+
+	Room* credits = new Room("THE END", "You've completed the game, i hope you enjoy it!\n\nhenuk");
+	entities.push_back(credits);
+#pragma endregion
+
+#pragma region Exits
+	//House
+	Exit* exitHouse = new Exit("The door opens to the familiar yard, where the ground is worn from years of work and training. The path east leads back outside.", Exit::Direction::east, infrontOfHouse);
+	house->AddEntity(exitHouse);
 	entities.push_back(exitHouse);
 
+	//Infront
+	Exit* enterHouse = new Exit("A well-trodden dirt path leads west to the wooden steps of your home.", Exit::Direction::west, house);
+	infrontOfHouse->AddEntity(enterHouse);
+	entities.push_back(enterHouse);
+
+	Exit* enterBarn = new Exit("A narrow trail, littered with stray wood chips and hay, leads north to the leaning barn", Exit::Direction::north, barn);
+	infrontOfHouse->AddEntity(enterBarn);
+	entities.push_back(enterBarn);
+
+	Exit* houseToForest1 = new Exit("The trees thicken ahead, their towering trunks marking the forest's edge. The path east vanishes into the woods.", Exit::Direction::east, forest1);
+	infrontOfHouse->AddEntity(houseToForest1);
+	entities.push_back(houseToForest1);
+
+	//Barn
+	Exit* exitBarn = new Exit("The open yard and your home lie south, just beyond the well-worn path.", Exit::Direction::south, infrontOfHouse);
+	barn->AddEntity(exitBarn);
+	entities.push_back(exitBarn);
+
+	//Forest 1
+	Exit* toInfront = new Exit("", Exit::Direction::west, infrontOfHouse);
+	forest1->AddEntity(toInfront);
+	entities.push_back(toInfront);
+
+	Exit* toWestOfBridge = new Exit("", Exit::Direction::east, westOfTheBridge);
+	forest1->AddEntity(toWestOfBridge);
+	entities.push_back(toWestOfBridge);
+
+	Exit* forest1Toforest2 = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest2);
+	forest1->AddEntity(forest1Toforest2);
+	entities.push_back(forest1Toforest2);
+
+	Exit* forest1Toforest3 = new Exit("", Exit::Direction::south, forest3);
+	forest1->AddEntity(forest1Toforest3);
+	entities.push_back(forest1Toforest3);
+
+	//Forest 2
+	Exit* forest2N = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest3);
+	forest2->AddEntity(forest2N);
+	entities.push_back(forest2N);
+
+	Exit* forest2S = new Exit("", Exit::Direction::south, forest1);
+	forest2->AddEntity(forest2S);
+	entities.push_back(forest2S);
+
+	Exit* forest2E = new Exit("", Exit::Direction::west, forest2);
+	forest2->AddEntity(forest2E);
+	entities.push_back(forest2E);
+
+	Exit* forest2W = new Exit("", Exit::Direction::east, forest2);
+	forest2->AddEntity(forest2W);
+	entities.push_back(forest2W);
+
+	//Forest 3
+	Exit* forest3N = new Exit("Trees stretch endlessly in every direction, their tangled roots and dense foliage making every path uncertain. Any direction could lead deeper into the wilderness.", Exit::Direction::north, forest1);
+	forest3->AddEntity(forest3N);
+	entities.push_back(forest3N);
+
+	Exit* forest3S = new Exit("", Exit::Direction::south, forest2);
+	forest3->AddEntity(forest3S);
+	entities.push_back(forest3S);
+
+	Exit* forest3E = new Exit("", Exit::Direction::west, forest3);
+	forest3->AddEntity(forest3E);
+	entities.push_back(forest3E);
+
+	Exit* forest3W = new Exit("", Exit::Direction::east, forest3);
+	forest3->AddEntity(forest3W);
+	entities.push_back(forest3W);
+
+	//West of bridge
+	Exit* bridgeToForest1 = new Exit("The river fades behind as the dense forest closes in. The path west vanishes beneath towering trees and tangled undergrowth.", Exit::Direction::west, forest1);
+	westOfTheBridge->AddEntity(bridgeToForest1);
+	entities.push_back(bridgeToForest1);
+
+	Exit* bridgeToCredits = new Exit("The land narrows toward the river, where the bridge stands as the only way forward. The path east leads toward it.", Exit::Direction::east, credits);
+	westOfTheBridge->AddEntity(bridgeToCredits);
+	entities.push_back(bridgeToCredits);
+
+#pragma endregion
 
 	player = new Player("MainPlayer", "");
-	player->setLocation(outsideHouse);
+	player->setLocation(infrontOfHouse);
 
 	entities.push_back(player);
 }

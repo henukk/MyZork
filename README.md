@@ -10,8 +10,8 @@ In **My Zork**, you play as a character living in the woods with your father. On
 
 ### ✅ Core Features
 
-- [ ] Three connected rooms
-- [ ] Five connected rooms
+- [x] Three connected rooms
+- [x] Five connected rooms
 - [ ] Interactive items that can be picked up and dropped
 - [ ] Ability to drop items
 - [ ] Items can be placed inside other items
